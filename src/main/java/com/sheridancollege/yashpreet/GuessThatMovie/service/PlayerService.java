@@ -14,12 +14,8 @@ public class PlayerService {
 
 //	create, update, delete, get by Id, get all
 	
-	public void createPlayer(Player player) {
-		player.setGamesLost(0);
-		player.setGamesPlayed(0);
-		player.setTotalScore(0);
-		
-		playerRepository.save(player);
+	public Player createPlayer(Player player) {
+		return playerRepository.save(player);
 	}
 	
 	public void updatePlayer(Player player) {
@@ -32,6 +28,10 @@ public class PlayerService {
 	
 	public Iterable<Player> getAllPlayers(){
 		return playerRepository.findAll();
+	}
+	
+	public Player getPlayerByName(String name) {
+		return playerRepository.findByName(name);
 	}
 	
 	public void deletePlayer(int id) {

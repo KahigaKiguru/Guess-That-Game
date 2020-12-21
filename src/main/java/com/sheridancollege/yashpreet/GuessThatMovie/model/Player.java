@@ -6,9 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "players")
+@Table(name = "players", uniqueConstraints = @UniqueConstraint(columnNames = "player_name"))
 public class Player {
 	
 	@Id
@@ -19,8 +20,14 @@ public class Player {
 	@Column(name = "player_name")
 	private String name;
 	
+	@Column(name = "player_position")
+	private int position;
+	
 	@Column(name =  "games_played")
 	private int gamesPlayed;
+	
+	@Column(name = "games_won")
+	private int gamesWon;
 	
 	@Column(name = "games_lost")
 	private int gamesLost;
@@ -66,6 +73,22 @@ public class Player {
 
 	public void setTotalScore(int totalScore) {
 		this.totalScore = totalScore;
+	}
+
+	public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(int position) {
+		this.position = position;
+	}
+
+	public int getGamesWon() {
+		return gamesWon;
+	}
+
+	public void setGamesWon(int gamesWon) {
+		this.gamesWon = gamesWon;
 	}
 	
 	
