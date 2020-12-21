@@ -105,6 +105,13 @@ public class PlayerController {
 		model.addAttribute("player", playerService.getPlayerById(player_id));
 		return "player_update";
 	}
+	
+	@GetMapping("/deletePlayer")
+	public String deletePlayer(@RequestParam("player_id") int player_id, Model model) {
+		playerService.deletePlayer(player_id);
+		Player admin = playerService.getPlayerByName("Admin");
+		return "redirect:/home?player_id=" + admin.getId();
+	}
 
 	@PostMapping("/updatePlayer")
 	public String updatePlayer(@RequestParam("player_id") int player_id, @ModelAttribute("player") Player pl) {
@@ -119,7 +126,8 @@ public class PlayerController {
 
 		playerService.updatePlayer(player);
 
-		return "redirect:/home?player_id=" + player.getId();
+		Player admin = playerService.getPlayerByName("Admin");
+		return "redirect:/home?player_id=" + admin.getId();
 	}
 
 	@GetMapping("/startGame")
@@ -217,8 +225,6 @@ public class PlayerController {
 				}
 			}
 			
-			model.addAttribute("number_of_letters", number_of_letters_in_movie);
-			number_of_letters_in_movie = 0;
 			return "redirect:/guessMoviePageUnregistered?movie_id=" + movie.getId();
 
 		} else if (!movie.getName().contains(letter)) {
@@ -237,7 +243,7 @@ public class PlayerController {
 		model.addAttribute("player", playerService.getPlayerById(player_id));
 		model.addAttribute("movie", movieService.getMovieById(movie_id));
 		model.addAttribute("number_of_letters", number_of_letters_in_movie);
-		
+		number_of_letters_in_movie = 0;
 		return "movie_guess";
 	}
 
@@ -245,6 +251,7 @@ public class PlayerController {
 	public String guessMoviePageUnregistered(@RequestParam("movie_id") int movie_id, Model model) {
 		model.addAttribute("movie", movieService.getMovieById(movie_id));
 		model.addAttribute("number_of_letters", number_of_letters_in_movie);
+		number_of_letters_in_movie = 0;
 		return "movie_guess_unregistered";
 	}
 
@@ -302,6 +309,7 @@ public class PlayerController {
 		} else {
 //			handle game lost			
 			model.addAttribute("message", "lose");
+			model.addAttribute("number_of_letters", number_of_letters_in_movie);
 			number_of_letters_in_movie = 0;
 			return "game_over";
 		}

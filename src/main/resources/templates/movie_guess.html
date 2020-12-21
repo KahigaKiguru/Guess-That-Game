@@ -27,7 +27,6 @@
 			<!-- Navbar brand -->
 			<a class="navbar-brand" href="#">Guess that movie</a>
 			<form class="form-inline">
-
 				<a class="btn btn-outline-white" th:href="@{/home(player_id=${player.id})}" type="submit">Home</a>
 				
 			</form>
@@ -38,16 +37,14 @@
 	<br>
 	<br>
 	<div class="container">
-		<span th:text="${player.name}"></span>
-		<span th:text="${player.id}"></span>
-		<span th:text="${movie.name}"></span>
-		<span th:text="${movie.id}"></span>
+	<br>
+				<div align="right" th:text="'Number of letters in the title: ' + ${number_of_letters}">2</div>
+				<br>
 				<div th:if="${param.wrong_input}">
 			<div class="alert alert-danger" th:text="'Wrong input'"></div>
 		</div>
 		<h3> Now that you have correctly guessed a letter in the name's movie, Guess the movie's actual name and stand a chance to win</h3>
 		<form method="post" class="form-signin" th:action="@{/guessName(player_id=${player.id}, movie_id=${movie.id})}">
-			<br>
 			<div class="form-group">
 				<label> Guess the name of the Movie :: </label>
 				<input type="text" name="name" class="form-control" placeholder="Movie's Name" autofocus="autofocus">

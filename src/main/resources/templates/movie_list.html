@@ -29,8 +29,7 @@
 				<form class="form-inline">
 				
 				<a class="btn btn-outline-white" th:href="@{/}" type="submit">Home</a>
-				<a class="btn btn-outline-white" th:href="@{/addMoviePage}" type="submit">Add a Movie</a><!-- 
-				<a class="btn btn-outline-white" th:href="@{/}" type="submit">Home</a> -->
+				<a class="btn btn-outline-white" th:href="@{/addMoviePage}" type="submit">Add a Movie</a>
 				</form>
 			</div>
 		</nav>
@@ -51,6 +50,8 @@
 						<td th:text="${movie.id}"></td>
 						<td th:text="${movie.name}"></td>
 						<td><a th:href="@{/updateMoviePage(movie_id=${movie.id})}" class="btn btn-success">Edit</a></td>
+						
+						<td><a th:href="@{/deleteMovie(movie_id=${movie.id})}" class="btn btn-danger">Delete</a></td>
 					</tr>
 				</tbody>
 			</table>

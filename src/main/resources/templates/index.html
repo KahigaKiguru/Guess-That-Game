@@ -70,6 +70,8 @@
 						<td th:text="${pl.totalScore}"></td>
 						<td>
 						<a class="btn btn-success"  th:if="${player.name} == 'Admin'" th:href="@{/showUpdatePage(player_id=${pl.id})}">Edit</a></td>
+						<td>
+						<a class="btn btn-danger"  th:if="${player.name} == 'Admin'" th:unless="${pl.name} == 'Admin'" th:href="@{/deletePlayer(player_id=${pl.id})}">Delete</a></td>
 					</tr>
 				</tbody>
 			</table>

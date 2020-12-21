@@ -38,8 +38,6 @@
 	<br>
 	<br>
 	<div class="container">
-		<span th:text="${movie.name}"></span>
-		<span th:text="${movie.id}"></span>
 		<form method="post" class="form-signin" 
 			th:action="@{/playUnregistered(movie_id=${movie.id})}">
 			<br>	
